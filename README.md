@@ -28,11 +28,11 @@
 3. 下载源代码，更新 feeds 并选择配置
 
    ```bash
-   git clone https://github.com/coolsnowwolf/lede
+   git clone [https://github.com/coolsnowwolf/lede](https://github.com/Golaszewski/openwrt-rk356x)
    cd lede
    ./scripts/feeds update -a
    ./scripts/feeds install -a
-   make menuconfig
+   make menuconfig  编译菜单
    ```
 
 4. 下载 dl 库，编译固件
@@ -40,7 +40,8 @@
 
    ```bash
    make download -j8
-   make V=s -j1
+   make V=s   如果你熟悉编译，可以多线程 make V=s -j$(nproc)
+   if 失败后，后面加V=s 查找log
    ```
 
 本套代码保证肯定可以编译成功。里面包括了 R21 所有源代码，包括 IPK 的。
