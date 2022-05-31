@@ -28,7 +28,7 @@
 3. 下载源代码，更新 feeds 并选择配置
 
    ```bash
-   git clone [https://github.com/coolsnowwolf/lede](https://github.com/Golaszewski/openwrt-rk356x)
+   git clone https://github.com/Golaszewski/openwrt-rk356x
    cd lede
    ./scripts/feeds update -a
    ./scripts/feeds install -a
