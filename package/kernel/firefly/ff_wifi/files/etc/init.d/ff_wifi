@@ -1,0 +1,31 @@
+#!/bin/sh /etc/rc.common
+START=19
+
+start()
+{                                                                                                                                                                     
+	[ -f /etc/config/wireless ] && return 0
+	wifi config
+
+	local radio="radio0"
+	local ssid="OpenWRT-""$(cat /sys/class/net/wlan0/address | awk -F: '{print $5$6}' | tr [a-z] [A-Z])"
+
+	. /lib/functions.sh
+
+	board=$(board_name)
+	case $board in
+	rockchip,rk3566-firefly-roc-pc|\
+	rockchip,rk3568-firefly-roc-pc|\
+	rockchip,rk3568-firefly-aioj)
+		uci set wireless.$radio.channel='1'
+		uci set wireless.$radio.hwmode='11g'
+		uci set wireless.$radio.htmode='HT20'
+		uci set wireless.$radio.disabled='0'
+		uci set wireless.default_$radio.ssid=$ssid
+		uci commit
+		;;
+	*)
+		uci set wireless.$radio.disabled='0'
+		uci commit
+		;;
+	esac
+}
