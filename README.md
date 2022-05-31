@@ -40,7 +40,7 @@
 
    ```bash
    make download -j8
-   make V=s   如果你熟悉编译，可以多线程 make V=s -j$(nproc)
+   make V=s   如果你熟悉编译，可以多线程 make -j$(nproc)
    if 失败后，后面加V=s 查找log
    ```
 
